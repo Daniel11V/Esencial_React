@@ -7,6 +7,7 @@ export const LoginLogout = ({children = null, logout = false, update}) => {
             update({
                 googleId: response.profileObj.googleId,
                 name: response.profileObj.name,
+                email: response.profileObj.email,
                 imageUrl: response.profileObj.imageUrl              
             });
         }
@@ -19,7 +20,7 @@ export const LoginLogout = ({children = null, logout = false, update}) => {
     if (children) {
         return (
             <GoogleLogin
-                clientId="270166148168-cu4pvav4r2s5pps6b8t8chqdratnklgs.apps.googleusercontent.com"
+                clientId="270166148168-t0qgdm1infopcj0nsnn9rnt126565hdc.apps.googleusercontent.com"
                 buttonText="Iniciar Sesion"
                 onSuccess={loginResponse}
                 onFailure={loginResponse}
@@ -32,7 +33,7 @@ export const LoginLogout = ({children = null, logout = false, update}) => {
     } else if (!logout) {
         return (
             <GoogleLogin
-                clientId="270166148168-cu4pvav4r2s5pps6b8t8chqdratnklgs.apps.googleusercontent.com"
+                clientId="270166148168-t0qgdm1infopcj0nsnn9rnt126565hdc.apps.googleusercontent.com"
                 buttonText="Iniciar Sesion"
                 onSuccess={loginResponse}
                 onFailure={loginResponse}
@@ -44,7 +45,7 @@ export const LoginLogout = ({children = null, logout = false, update}) => {
     } else {
         return (
             <GoogleLogout
-                clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                clientId="270166148168-t0qgdm1infopcj0nsnn9rnt126565hdc.apps.googleusercontent.com"
                 buttonText="Cerrar Sesión"
                 onLogoutSuccess={logoutResponse}
                 className="googleLogout"
