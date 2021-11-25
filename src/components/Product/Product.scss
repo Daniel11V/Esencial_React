@@ -1,0 +1,131 @@
+.prod {
+    height: 75px;
+    width: 100%;
+    border: 1px solid gray;
+    // border-radius: 10px;
+    // margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+
+    &:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        .prod__img {
+            border-top-left-radius: 10px;
+        }
+    }
+
+    &:nth-last-child(1) {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        .prod__img {
+            border-bottom-left-radius: 10px;
+        }
+    }
+
+
+    &__img {
+        height: 100%;
+        width: 75px;
+        border-right: 1px solid gray;
+
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .right {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding-right: 1em;
+        flex-wrap: wrap;
+    }
+
+    &__name {
+        // height: 65px;
+        
+        flex: 1;
+        min-width: 200px; 
+        padding-left: 0.8em;
+        font-size: 1.5em;
+        display: -webkit-box;
+        max-height: 100%;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+    }
+    
+    .right2 {
+        height: 70%;
+        display: flex;
+        align-items: center;
+    }
+    
+    &__price {
+        font-size: 1.4em;
+        padding-right: 1em;
+    }
+
+    .right3 {
+        width: 105px;
+    }
+    
+    .input-field {
+        display: flex;
+        justify-content: space-between;
+        // padding-bottom: 0.3em;
+        margin: 0;
+
+        .select-wrapper input.select-dropdown {
+            height: 1.5em;
+        }
+
+        .select-wrapper .caret {
+            margin-top: 0;
+        }
+
+        select {
+            height: 1.8em;
+        }
+    }
+    
+    &__period {
+        width: 92%;
+        margin-bottom: 0.2em;
+        font-size: 0.8em;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__counter {
+        display: flex;
+        justify-content: space-between;
+
+        &__btn {
+            background: none;
+            border: none;
+            border-radius: 50%;
+
+            &:hover {
+                background-color: #dfdfdf;
+            }
+        }
+
+        &__show {
+            width: 50px;
+            text-align: center;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+}

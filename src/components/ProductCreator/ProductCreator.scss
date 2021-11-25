@@ -1,0 +1,123 @@
+.prodCr {
+    height: 75px;
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    
+    &__img {
+        height: 100%;
+        width: 75px;
+        min-width: 75px;
+        border-right: 1px solid gray;
+        
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+
+        .modal-trigger {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            transition: background-color 0.5s;
+            
+            svg path{
+                color: rgba(0, 0, 0, 0.582);
+                transition: color 0.5s;
+            }
+            
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                
+                svg path{
+                    color:rgb(0, 0, 0);
+                }
+            }
+        }
+    }
+
+    .row {
+        margin-bottom: 0;
+        
+        &.right {
+            padding-left: 0.8em;
+            width: 100%;
+            
+            .input-field {
+                margin-bottom: 0;
+                margin-top: 0.3em;
+                padding-right: 0.5em;
+            
+                &.col.s2 {
+                    display: flex;
+                    padding: 0;
+                    padding-left: 0.5em !important;
+                }
+            }
+        }
+    }
+    
+    &__name {
+        font-size: 1.5em !important;
+    }
+    
+    span {
+        font-size: 1.4em;
+        margin-top: 0.1em;
+        margin-right: 0.3em;
+    }
+
+    &__price {
+        font-size: 1.4em !important;
+        // margin-right: 0.5em !important;
+    }
+    
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    
+    &__add {
+        height: 100%;
+        width: 75px;
+        min-width: 75px;
+        margin-left: auto;
+        
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.5s;
+        color: rgba(0, 0, 0, 0.582);
+        transition: color 0.5s;
+        
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            color:rgb(0, 0, 0);
+        }
+        
+        i {
+            font-size: 2.5em;
+        }
+    }
+}
