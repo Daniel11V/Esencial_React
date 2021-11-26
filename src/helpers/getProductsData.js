@@ -4,7 +4,7 @@ export const getProductsData = () => {
         setTimeout(() => {
 
             const productsFromStorage = JSON.parse(localStorage.getItem("usersProducts"));
-            resolve(productsFromStorage);
+            resolve(productsFromStorage ? productsFromStorage : []);
 
         }, 500)
 
