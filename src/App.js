@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import { NavBar } from './components/NavBar/NavBar';
 import { Footer } from './components/Footer/Footer';
 import { MyProducts } from './pages/MyProducts/MyProducts';
+import { MyOperations } from './pages/MyOperations/MyOperations';
 import { getProductsData } from "./helpers/getProductsData";
 import { saveProductsData } from "./helpers/saveProductsData";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState({});
@@ -13,13 +15,13 @@ function App() {
 
   useEffect(() => {
 
-    if (user.googleId && !products.length) {
+    if (user.googleId && !products.length && !loading) {
 
       setLoading(true)
 
       getProductsData()
         .then(savedProds => {
-          const userPosition = savedProds.indexOf(savedUser => parseInt(savedUser.id) === user.googleId)
+          const userPosition = savedProds.findIndex(savedUser => (savedUser.id.localeCompare(user.googleId) === 0))
 
           if (userPosition !== -1) {
 
@@ -44,18 +46,40 @@ function App() {
         })
         .catch((err) => console.error(err))
         .finally(() => setLoading(false))
+    } else if (!user.googleId && products.length) {
+      // Cuando se cierra sesion
+      setProducts([])
     }
 
-  }, [user, products])
+  }, [user, products, loading])
 
+  const newProduct = (newProd) => {
+    setProducts((prods) => [...prods, newProd])
+
+    getProductsData()
+      .then(savedProds => {
+        let savedProdsNew = savedProds
+        const userPosition = savedProds.findIndex(savedUser => (savedUser.id.localeCompare(user.googleId) === 0))
+        savedProdsNew[userPosition].products.push(newProd)
+        saveProductsData(savedProdsNew)
+      })
+  }
 
   return (
-    <div id="header-wrapper" className="App">
+    <BrowserRouter id="header-wrapper" className="App">
       <NavBar user={user} setUser={setUser} />
-      <MyProducts products={products} setProducts={setProducts} loading={loading} />
+
+      <Routes>
+        <Route path="/" element={<MyProducts products={products} newProduct={newProduct} loading={loading} />} />
+        <Route path="/products/:categoryId" element={<MyProducts products={products} newProduct={newProduct} loading={loading} />} />
+        <Route path="/operations" element={<MyOperations />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+
       <Footer />
-    </div>
+    </BrowserRouter>
   );
+
 }
 
 export default App;

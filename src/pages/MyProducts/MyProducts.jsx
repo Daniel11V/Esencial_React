@@ -1,18 +1,14 @@
+import { useParams } from "react-router"
 import { ProductCreator } from "../../components/ProductCreator/ProductCreator"
 import { ProductList } from "../../components/ProductList/ProductList"
-import { saveProductsData } from "../../helpers/saveProductsData"
 
-export const MyProducts = ({ products, setProducts, loading }) => {    
+export const MyProducts = ({ products, newProduct, loading }) => {    
     const style = {
         padding: "0 2em",
         marginBottom: "3em" 
     }
     
-    const newProduct = ( newProd ) => {
-        setProducts((prods) => [ ...prods, newProd ])
-
-        saveProductsData(products)
-    }
+    const {categoryId = "Vestimenta"} = useParams()
 
     return (
         <div id="header-wrapper" style={style}>
@@ -28,7 +24,7 @@ export const MyProducts = ({ products, setProducts, loading }) => {
                 </div>
             ) : (
                 <div className="prods">
-                    <h5>Vestimenta</h5>
+                    <h5>{categoryId}</h5>
                     <ProductList products={products}/>
                 </div>
             )}

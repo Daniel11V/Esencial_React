@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LoginLogout } from '../LoginLogout/LoginLogout.jsx';
 import M from 'materialize-css';
 import './NavBar.scss';
@@ -26,7 +26,7 @@ export const NavBar = ({ user, setUser }) => {
             <div className="navbar-fixed">
                 <nav className="blue darken-2" style={{ marginBottom: '20px' }}>
                 <div className="nav-wrapper">
-                    <a href="/" className="brand-logo hide-on-med-and-down" style={{ paddingLeft: '20px' }}>Esencial</a>
+                    <Link to="/" className="brand-logo hide-on-med-and-down" style={{ paddingLeft: '20px' }}>Esencial</Link>
                     <div data-target="mobile-demo" className="sidenav-trigger hide-on-large-only noselect" style={{ cursor: 'pointer' }}><i className="material-icons noselect">menu</i></div>
                     {/* {(lastPage) &&
                         <div onClick={history.goBack} className="brand-logo noselect" style={{cursor: 'pointer', fontSize: '25px', paddingLeft: '10px', display: 'flex', flexWrap: 'nowrap'}}>
@@ -35,9 +35,9 @@ export const NavBar = ({ user, setUser }) => {
                         </div>
                     } */}
                     <ul className="right hide-on-med-and-down">
-                        <li><a href="/" >Caja</a></li>
-                        <li><a href="/" >Operaciones</a></li>
-                        <li><a href="/" >Productos</a></li>
+                        <li><Link to="/" >Caja</Link></li>
+                        <li><Link to="/operations" >Operaciones</Link></li>
+                        <li><Link to="/products/Ropa" >Productos</Link></li>
                         {user.name?(
                             <li className="profile">
                                 <div style={{display: 'flex',flexDirection: 'column'}}>
@@ -80,10 +80,10 @@ export const NavBar = ({ user, setUser }) => {
                 )
                 }
                 </li>
-                <li><i><a href="/" className="subheader" style={{ paddingLeft: '20px' }}>Esencial</a></i></li>
-                <li><a href="/" >Caja</a></li>
-                <li><a href="/" >Operaciones</a></li>
-                <li><a href="/" >Productos</a></li>
+                <li><i><Link to="/" className="subheader" style={{ paddingLeft: '20px' }}>Esencial</Link></i></li>
+                <li><Link to="/" >Caja</Link></li>
+                <li><Link to="/operations" >Operaciones</Link></li>
+                <li><Link to="/products/Ropa" >Productos</Link></li>
             </ul>
         </div>
     );
