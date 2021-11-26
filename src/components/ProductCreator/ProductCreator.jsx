@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { GrFormAdd } from "react-icons/gr"
 import './ProductCreator.scss'
 
-export const ProductCreator = ({ setProducts }) => {
+export const ProductCreator = ({ newProduct }) => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [imgUrl, setImgUrl] = useState('')
@@ -13,13 +13,14 @@ export const ProductCreator = ({ setProducts }) => {
         M.Modal.init(elems);
     }, [])
     
-    const createProduct = () => {
+    const submitProduct = () => {
         if (name && price) {
-            setProducts((prods) => [
-                ...prods,
-                { name, price, quantity: 0, period: "Month", imgUrl }
-            ])
-            console.log("guardado")
+
+            newProduct({ name, price, quantity: 0, period: "Month", imgUrl })
+
+            setName('')
+            setPrice('')
+            setImgUrl('')
         }
     }
 
@@ -36,8 +37,8 @@ export const ProductCreator = ({ setProducts }) => {
                 <div id="getImgUrl" className="modal">
                     <div className="modal-content">
                         <h4>Pegar URL de la imagen del producto</h4>
-                        <p>En serio, busca una imgen en Google</p>
-                        <input type="text" value={imgUrl} onChange={e => setImgUrl(e.target.value)} />
+                        <p>En serio, busca una imagen en Google</p>
+                        <input type="text" value={imgUrl} onChange={e => setImgUrl(e.target.value)} placeholder="Pegar aqui..."/>
                     </div>
                     <div className="modal-footer">
                         <a href="#!" className="modal-close waves-effect waves-green btn-flat">Listo!</a>
@@ -61,7 +62,7 @@ export const ProductCreator = ({ setProducts }) => {
                        onChange={e => setPrice(e.target.value)} />
                 </div>
             </div>
-            <div className="prodCr__add waves-effect" onClick={createProduct}>
+            <div className="prodCr__add waves-effect" onClick={submitProduct}>
                 <i className="material-icons">check</i>
             </div>
         </div>
