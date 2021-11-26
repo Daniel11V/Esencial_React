@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     console.log(user.googleId, products)
-    if (user.googleId && !products) {
+    if (user.googleId && !products.length) {
       console.log('Pass')
       setLoading(true)
 

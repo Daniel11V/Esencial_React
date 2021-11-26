@@ -23,7 +23,7 @@ export const LoginLogout = ({children = null, logout = false, update}) => {
                 clientId="630395241807-d3qudpjgqgjfrho00mifeu1rq93oe6qp.apps.googleusercontent.com"
                 buttonText="Iniciar Sesion"
                 onSuccess={loginResponse}
-                onFailure={loginResponse}
+                onFailure={(err) => console.warn(err)}
                 cookiePolicy={'single_host_origin'}
                 render={renderProps => (
                   <div onClick={renderProps.onClick} disabled={renderProps.disabled}>{children}</div>
@@ -36,7 +36,7 @@ export const LoginLogout = ({children = null, logout = false, update}) => {
                 clientId="630395241807-d3qudpjgqgjfrho00mifeu1rq93oe6qp.apps.googleusercontent.com"
                 buttonText="Iniciar Sesion"
                 onSuccess={loginResponse}
-                onFailure={loginResponse}
+                onFailure={(err) => console.warn(err)}
                 cookiePolicy={'single_host_origin'}
                 isSignedIn={true}
                 className="googleLogin"
