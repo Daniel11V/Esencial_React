@@ -12,8 +12,9 @@ function App() {
 
 
   useEffect(() => {
-
+    console.log(user.googleId, products)
     if (user.googleId && !products) {
+      console.log('Pass')
       setLoading(true)
 
       getProductsData()
