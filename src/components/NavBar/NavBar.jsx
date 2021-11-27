@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../../context/UserContext.jsx';
 import { Link } from "react-router-dom";
 import { LoginLogout } from '../LoginLogout/LoginLogout.jsx';
 import M from 'materialize-css';
 import './NavBar.scss';
 
 
-export const NavBar = ({ user, setUser }) => {
+export const NavBar = () => {
     // const history = useHistory();
     // const [ lastPage, setLastPage ] = useState('');
+    const { user, setUser } = useContext(UserContext)
 
     useEffect(() => {
         let elems = document.querySelectorAll('.sidenav');

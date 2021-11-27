@@ -33,15 +33,15 @@
             transition: background-color 0.5s;
             
             svg path{
-                color: rgba(0, 0, 0, 0.582);
-                transition: color 0.5s;
+                stroke: rgba(0, 0, 0, 0.582);
+                transition: stroke 0.5s;
             }
             
             &:hover {
                 background-color: rgba(0, 0, 0, 0.1);
                 
                 svg path{
-                    color:rgb(0, 0, 0);
+                    stroke:rgb(0, 0, 0);
                 }
             }
         }

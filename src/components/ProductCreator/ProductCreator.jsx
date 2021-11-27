@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { GrFormAdd } from "react-icons/gr"
 import './ProductCreator.scss'
 
-export const ProductCreator = ({ newProduct }) => {
+export const ProductCreator = ({ createProduct }) => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [imgUrl, setImgUrl] = useState('')
@@ -16,7 +16,7 @@ export const ProductCreator = ({ newProduct }) => {
     const submitProduct = () => {
         if (name && price) {
 
-            newProduct({ name, price, quantity: 0, period: "Month", imgUrl })
+            createProduct({ name, price, quantity: 0, period: "Month", imgUrl })
 
             setName('')
             setPrice('')
