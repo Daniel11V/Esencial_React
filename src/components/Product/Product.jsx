@@ -31,7 +31,7 @@ export const Product = ({ prodId, prodInfo }) => {
                     <span className="prod__price">$ {price}</span>
 
                     <div className="right3">
-                        <div className="input-field col s12">
+                        <div className="prod__period input-field col s12">
                             <select value={period} onChange={handleChangePeriod}>            
                                 <option value="Month">Por Mes</option>
                                 <option value="Year">Por Año</option>

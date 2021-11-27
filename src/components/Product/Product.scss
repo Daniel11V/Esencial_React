@@ -98,11 +98,16 @@
     }
     
     &__period {
-        width: 92%;
-        margin-bottom: 0.2em;
-        font-size: 0.8em;
-        display: flex;
-        justify-content: space-between;
+        // width: 92%;
+        // margin-bottom: 0.2em;
+        // font-size: 0.8em;
+        // display: flex;
+        // justify-content: space-between;
+
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
     &__counter {
@@ -122,6 +127,7 @@
         &__show {
             width: 50px;
             text-align: center;
+            line-height: 1;
             -moz-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
