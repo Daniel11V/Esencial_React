@@ -1,45 +1,29 @@
 import { createContext, useState } from "react";
 import { defaultProducts } from "../data/defaultProducts";
-import { getProductsData, saveProductsData } from "../helpers/productsData";
+import { getProductsData, updateProductsData, addUserData } from "../helpers/productsData";
 
 
 export const ProductContext = createContext()
 
 export const ProductProvider = ({ children }) => {
-    const [allUsersProducts, setAllUsersProducts] = useState([]);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false)
 
-    const loadProducts = async (userId, reloadFromStorage = false) => {
+    const loadProducts = async (userId) => {
             
         setLoading(true)
         
         try {
 
-            let productsData = [ ...allUsersProducts ]
-            
-            if (!allUsersProducts.length || reloadFromStorage) {
-                productsData = await getProductsData()
-            }            
-            
-            const userPosition = productsData.findIndex(savedUser => (savedUser.id.localeCompare(userId) === 0))
-                
-            if (userPosition !== -1) {
-                
-                setProducts(productsData[userPosition].products)
-                setAllUsersProducts( productsData )
-                
+            const productsData = await getProductsData(userId)
+
+            console.log(productsData)
+
+            if (productsData) {
+                setProducts(productsData)
             } else {
-                
                 setProducts(defaultProducts)
-                setAllUsersProducts([
-                    ...productsData,
-                    { id: userId, products: defaultProducts }
-                ])
-                saveProductsData([
-                    ...productsData,
-                    { id: userId, products: defaultProducts }
-                ])                
+                addUserData(userId, defaultProducts)  
             }
                         
         } catch (err) {
@@ -51,17 +35,7 @@ export const ProductProvider = ({ children }) => {
 
     const saveProducts = (userId) => {
 
-        if(allUsersProducts.length) {
-            
-            // Crear lista de productos de usuarios actualizada
-            let newUsersProducts = [ ...allUsersProducts ]
-            const userPosition = newUsersProducts.findIndex(savedUser => (savedUser.id.localeCompare(userId) === 0))
-            newUsersProducts[userPosition].products = [ ...products ]
-            
-            // Guardar
-            setAllUsersProducts(newUsersProducts)
-            saveProductsData(newUsersProducts)
-        }
+        updateProductsData(userId, products)
     }
 
     const lessQuantity = (prodId) => {

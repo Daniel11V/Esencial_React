@@ -4,7 +4,8 @@ import { UserContext } from "../../context/UserContext"
 import { ProductCreator } from "../../components/ProductCreator/ProductCreator"
 import { ProductList } from "../../components/ProductList/ProductList"
 import { ProductContext } from "../../context/ProductContext"
-import M from "materialize-css";
+import M from "materialize-css"
+import './MyProducts.scss'
 
 export const MyProducts = () => {    
 
@@ -67,7 +68,7 @@ export const MyProducts = () => {
     }
 
     return (
-        <div className="page-wrapper">
+        <div>
              <div className="header">
               <h3>Lista de tus Compras Esenciales</h3>
                 {/* Modal Trigger */}

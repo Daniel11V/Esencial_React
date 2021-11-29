@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { LoginLogout } from '../LoginLogout/LoginLogout.jsx';
 import M from 'materialize-css';
 import './NavBar.scss';
+import logoImg from '../../img/logo-esencial.png';
 
 
 export const NavBar = () => {
@@ -28,7 +29,10 @@ export const NavBar = () => {
             <div className="navbar-fixed">
                 <nav className="blue darken-2" style={{ marginBottom: '20px' }}>
                 <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo hide-on-med-and-down" style={{ paddingLeft: '20px' }}>Esencial</Link>
+                    <Link to="/" className="brand-logo hide-on-med-and-down" style={{ paddingLeft: '20px' }}>
+                        <img src={logoImg} alt="Logo" className="logo-img" />
+                        {/* <img src="//www.jquery-az.com/html/images/banana.jpg" title="Title of image" alt="alt text here"/> */}
+                    </Link>
                     <div data-target="mobile-demo" className="sidenav-trigger hide-on-large-only noselect" style={{ cursor: 'pointer' }}><i className="material-icons noselect">menu</i></div>
                     {/* {(lastPage) &&
                         <div onClick={history.goBack} className="brand-logo noselect" style={{cursor: 'pointer', fontSize: '25px', paddingLeft: '10px', display: 'flex', flexWrap: 'nowrap'}}>
