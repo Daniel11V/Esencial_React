@@ -16,6 +16,5 @@
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "start_url": "https://esencial.netlify.app/",
-    "display": "standalone",
-    "orientation": "portrait"
+    "display": "standalone"
 }

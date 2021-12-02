@@ -1,14 +1,15 @@
 .prodCr {
-    height: 75px;
+    min-height: 75px;
     width: 100%;
     border: 1px solid gray;
     border-radius: 10px;
     display: flex;
     align-items: center;
     font-size: 1.2em;
+    display: flex;
+    align-items: stretch;
     
     &__img {
-        height: 100%;
         width: 75px;
         min-width: 75px;
         border-right: 1px solid gray;
@@ -24,7 +25,7 @@
         background-size: cover;
 
         .modal-trigger {
-            height: 100%;
+            min-height: 100%;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -56,7 +57,7 @@
             
             .input-field {
                 margin-bottom: 0;
-                margin-top: 0.3em;
+                margin-top: 0.8em;
                 padding-right: 0.5em;
             
                 &.col.s2 {
@@ -96,7 +97,6 @@
     }
     
     &__add {
-        height: 100%;
         width: 75px;
         min-width: 75px;
         margin-left: auto;
@@ -107,9 +107,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: background-color 0.5s;
         color: rgba(0, 0, 0, 0.582);
-        transition: color 0.5s;
+        transition: color 0.5s, background-color 0.5s;
         
         &:hover {
             background-color: rgba(0, 0, 0, 0.1);

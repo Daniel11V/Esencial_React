@@ -7,6 +7,7 @@ export const ProductList = ({ products }) => {
         <div className="prod_list">
             {products.map((prodInfo, i) => (
                 <Product key={i} prodId={i} prodInfo={prodInfo} />
+                // <div key={i}></div>
             ))}
         </div>
     )

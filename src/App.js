@@ -1,53 +1,54 @@
 import { NavBar } from './components/NavBar/NavBar';
 // import { Footer } from './components/Footer/Footer';
 import { MyProducts } from './pages/MyProducts/MyProducts';
-import { MyOperations } from './pages/MyOperations/MyOperations';
+import { MyMoney } from './pages/MyMoney/MyMoney';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import { UserContext, UserProvider } from "./context/UserContext";
-import { ProductProvider } from './context/ProductContext';
-import { useContext } from 'react';
 import { Layout } from './components/Layout/Layout';
 import { Welcome } from './pages/Welcome/Welcome';
+import { Provider, useSelector } from 'react-redux';
+import { store } from './store/store';
 
 const PrivateOutlet = () => {
-  let { user } = useContext(UserContext);
+  const user = useSelector(state => state.user)
 
   return user.name ? <Outlet /> : <Navigate to="/login" />;
 }
 
+const LoginOutlet = () => {
+  const user = useSelector(state => state.user)
+
+  return user.name ? <Navigate to="/" /> : <h3>Inicia Sesion para comenzar...</h3>;
+}
+
 function App() {
   return (
-    <UserProvider>
-      <ProductProvider>
-
-        <BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
 
 
-          <NavBar />
+        <NavBar />
 
-          <Routes>
-            <Route element={<Layout />}>
+        <Routes>
+          <Route element={<Layout />}>
 
-              <Route path="/" element={<Welcome />} />
-              <Route path="/login" element={(<h3>Inicia Sesion para comenzar...</h3>)} />
+            <Route path="/" element={<Welcome />} />
+            <Route path="/login" element={<LoginOutlet />} />
 
-              <Route element={<PrivateOutlet />}>
-                <Route path="/products/:categoryId" element={<MyProducts />} />
-                <Route path="/operations" element={<MyOperations />} />
-              </Route>
-
-              <Route path="*" element={<Navigate to="/" />} />
-
+            <Route element={<PrivateOutlet />}>
+              <Route path="/products/:categoryId" element={<MyProducts />} />
+              <Route path="/operations" element={<MyMoney />} />
             </Route>
-          </Routes>
 
-          {/* <Footer /> */}
+            <Route path="*" element={<Navigate to="/" />} />
+
+          </Route>
+        </Routes>
+
+        {/* <Footer /> */}
 
 
-        </BrowserRouter>
-
-      </ProductProvider>
-    </UserProvider>
+      </BrowserRouter>
+    </Provider>
   );
 
 }

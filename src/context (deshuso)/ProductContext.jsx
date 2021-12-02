@@ -1,13 +1,23 @@
 import { createContext, useState } from "react";
-import { defaultProducts } from "../data/defaultProducts";
-import { getProductsData, updateProductsData, addUserData } from "../helpers/productsData";
+import { defaultProducts } from "../data/defaultData";
+import { getData, updateData, addData } from "../helpers/firebaseData";
 
+/*
+const productStructure = [{
+    name: '',
+    price: 0,
+    qunatity: 0,
+    period: 'Month',
+    imgUrl: ''
+}]
+*/
 
 export const ProductContext = createContext()
 
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false)
+    const collectionName = 'usersProducts'
 
     const loadProducts = async (userId) => {
             
@@ -15,15 +25,15 @@ export const ProductProvider = ({ children }) => {
         
         try {
 
-            const productsData = await getProductsData(userId)
+            const data = await getData(collectionName, userId)
 
-            console.log(productsData)
+            console.log(data)
 
-            if (productsData) {
-                setProducts(productsData)
+            if (data) {
+                setProducts([ ...data.products ])
             } else {
                 setProducts(defaultProducts)
-                addUserData(userId, defaultProducts)  
+                addData(collectionName, userId, { products: defaultProducts })  
             }
                         
         } catch (err) {
@@ -35,7 +45,7 @@ export const ProductProvider = ({ children }) => {
 
     const saveProducts = (userId) => {
 
-        updateProductsData(userId, products)
+        updateData(collectionName, userId, { products: products })
     }
 
     const lessQuantity = (prodId) => {

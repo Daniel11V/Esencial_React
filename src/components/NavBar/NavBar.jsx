@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react';
-import { UserContext } from '../../context/UserContext.jsx';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { LoginLogout } from '../LoginLogout/LoginLogout.jsx';
 import M from 'materialize-css';
@@ -10,7 +10,7 @@ import logoImg from '../../img/logo-esencial.png';
 export const NavBar = () => {
     // const history = useHistory();
     // const [ lastPage, setLastPage ] = useState('');
-    const { user, setUser } = useContext(UserContext)
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         let elems = document.querySelectorAll('.sidenav');
@@ -29,9 +29,8 @@ export const NavBar = () => {
             <div className="navbar-fixed">
                 <nav className="blue darken-2" style={{ marginBottom: '20px' }}>
                 <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo hide-on-med-and-down" style={{ paddingLeft: '20px' }}>
+                    <Link to="/" className="brand-logo hide-on-med-and-down" style={{ paddingLeft: '0.8em' }}>
                         <img src={logoImg} alt="Logo" className="logo-img" />
-                        {/* <img src="//www.jquery-az.com/html/images/banana.jpg" title="Title of image" alt="alt text here"/> */}
                     </Link>
                     <div data-target="mobile-demo" className="sidenav-trigger hide-on-large-only noselect" style={{ cursor: 'pointer' }}><i className="material-icons noselect">menu</i></div>
                     {/* {(lastPage) &&
@@ -40,21 +39,21 @@ export const NavBar = () => {
                             {lastPage}
                         </div>
                     } */}
-                    <ul className="right hide-on-med-and-down">
-                        <li><Link to="/" >Caja</Link></li>
+                    <ul className="right hide-on-med-and-down pages-ul">
+                        <li><Link to="/" >Cuentas</Link></li>
                         <li><Link to="/operations" >Operaciones</Link></li>
                         <li><Link to="/products/Ropa" >Productos</Link></li>
                         {user.name?(
                             <li className="profile">
                                 <div style={{display: 'flex',flexDirection: 'column'}}>
                                     <span className="white-text name" style={{lineHeight: 'normal',marginTop: '2px', fontSize:'23px'}} >{user.name}</span>
-                                    <LoginLogout logout={true} update={(v)=>setUser(v)}/>
+                                    <LoginLogout logout={true} />
                                 </div>
                                 <img className="circle" src={user.imageUrl} alt="profile" onError={(e)=>{e.target.onerror=null;e.target.src='https://cybergisxhub.cigi.illinois.edu/wp-content/uploads/2020/10/Portrait_Placeholder.png';}} />
                             </li>
                             ):(
                             <li className="sessionLi" > 
-                                <LoginLogout update={(v)=>(!user.name)&&setUser(v)} />
+                                <LoginLogout user={user} />
                             </li>
                             )
                         }
@@ -73,7 +72,7 @@ export const NavBar = () => {
                         </div>
                         <img className="circle" src={user.imageUrl} key={user.imageUrl} alt="profile" onError={(e)=>{e.target.onerror=null;e.target.src='https://cybergisxhub.cigi.illinois.edu/wp-content/uploads/2020/10/Portrait_Placeholder.png';}} />
                         <span className="white-text name">{user.name}</span>
-                        <LoginLogout logout={true} update={(v)=>setUser(v)} className="logout" />
+                        <LoginLogout logout={true} className="logout" />
                     </div>
                 ) : (
                     <div className="user-view">
@@ -81,13 +80,13 @@ export const NavBar = () => {
                             <img alt="background"src="https://images.freecreatives.com/wp-content/uploads/2016/02/Abstract-Bright-Blue-Geometric-Background.jpg" />
                         </div>
                         <img className="circle" src="https://cybergisxhub.cigi.illinois.edu/wp-content/uploads/2020/10/Portrait_Placeholder.png" alt="profile" />
-                        <LoginLogout update={(v)=>(!user.name)&&setUser(v)} />
+                        <LoginLogout user={user} />
                     </div>
                 )
                 }
                 </li>
                 <li><i><Link to="/" className="subheader" style={{ paddingLeft: '20px' }}>Esencial</Link></i></li>
-                <li><Link to="/" >Caja</Link></li>
+                <li><Link to="/" >Cuentas</Link></li>
                 <li><Link to="/operations" >Operaciones</Link></li>
                 <li><Link to="/products/Ropa" >Productos</Link></li>
             </ul>

@@ -1,0 +1,29 @@
+.oper {
+    width: 100%;
+    border: 1px solid gray;
+    // border-radius: 10px;
+    // margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    padding: 0 1em;
+
+    &:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        .oper__img {
+            border-top-left-radius: 10px;
+        }
+    }
+
+    &:nth-last-child(1) {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        .oper__img {
+            border-bottom-left-radius: 10px;
+        }
+    }
+}

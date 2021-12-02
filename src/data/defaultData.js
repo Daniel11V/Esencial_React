@@ -4,3 +4,38 @@ export const defaultProducts = [
     { name: 'Cepillo de Diente de Madera', price: 1000, quantity: 0, period: 'Month', imgUrl: 'https://http2.mlstatic.com/D_NQ_NP_665031-MLA45044042579_032021-O.webp' },
     { name: 'Pasta Dental', price: 1000, quantity: 0, period: 'Month', imgUrl: 'https://farmaciasdelpueblo.vteximg.com.br/arquivos/ids/173611/2119317_Colgate-Pasta-Dental-Colgate-Anticaries-con-Calcio-x-90-gr_img2.png?v=637580918756370000' }
 ]
+
+export const defaultMoney = {
+    banks: [{
+        name: 'Efectivo',
+        imgUrl: '',
+        counts: [
+            {
+                coin: "ARS",
+                startMount: 0,
+                lastMonthMount: 0
+            }
+        ]
+    }],
+    otherBanks: [
+        {
+            name: 'Compras Fisicas',
+            imgUrl: '',
+            coin: ["ARS"]
+        },
+        {
+            name: 'Compras Virtuales',
+            imgUrl: '',
+            coin: ["ARS", "USD"]
+        }
+    ],
+    operations: []
+}
+
+export const coins = [
+    { name: "ARS", imgUrl: "" },
+    { name: "USD", imgUrl: "" },
+    { name: "EUR", imgUrl: "" },
+    { name: "BTC", imgUrl: "" },
+    { name: "ETH", imgUrl: "" }
+]
