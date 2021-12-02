@@ -6,6 +6,7 @@ export const defaultProducts = [
 ]
 
 export const defaultMoney = {
+    lastMounthUpatedTotal: -1,
     banks: [{
         name: 'Efectivo',
         imgUrl: '',

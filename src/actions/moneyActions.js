@@ -5,7 +5,13 @@ const collectionName = "usersMoney"
 
 /*
 const moneyStructure = {
-    totalMoney: 0,
+    (local) banksTotal: {
+        ['bankName']: {
+            ['coinName']: 2000,
+            ['coinName']: 2000
+        }
+    },
+    lastMonthUpdated: 9,
     banks: [
         {
             name: '',
@@ -13,7 +19,6 @@ const moneyStructure = {
             counts: [
                 {
                     coin: "ARS",
-                    startMount: 0,
                     lastMonthMount: 0
                 }
             ]
@@ -29,9 +34,10 @@ const moneyStructure = {
     operations: [
         {
             myBank: "",
-            coin: "ARS"
+            coin: "ARS",
             otherName: '',
-            type: 'Active'/'Pasive',
+            otherIsMe: false,
+            isPasive: false,
             mount: 0,
             description: '',
             date: 'timestamp'
@@ -49,8 +55,10 @@ export const getMoneyFromFirebase = (userId) => async (dispatch) => {
         const data = await getData(collectionName, userId)
 
         if (data) {
+            data.banksTotal = getBanksTotal(data)
             dispatch(saveMoneyLocal(data))
         } else {
+            defaultMoney.banksTotal = getBanksTotal(defaultMoney)
             dispatch(saveMoneyLocal(defaultMoney))
 
             addData(collectionName, userId, defaultMoney)
@@ -73,6 +81,43 @@ export const cleanMoney = () => (dispatch) => {
 
     dispatch(saveMoneyLocal({ banks: [], operations: [] }))
 }
+
+export const getBanksTotal = (moneyInfo) => {
+    const { banks, operations } = moneyInfo
+    let newBankTotal = {}
+
+    // Init Banks
+    for (let bank of banks) {
+        newBankTotal[bank.name] = {}
+        for (let count of bank.counts) {
+            newBankTotal[bank.name][count.coin] = count.lastMonthMount
+        }
+    }
+
+    // Calculate Operations
+    for (let operation of operations) {
+        // Verificar dentro del mes
+
+        const { myBank, otherName, coin, mount, isPasive, otherIsMe } = operation
+
+        if (isPasive) {
+            newBankTotal[myBank][coin] -= mount
+
+            if (otherIsMe) {
+                newBankTotal[otherName][coin] += mount
+            }
+        } else {
+            newBankTotal[myBank][coin] += mount
+
+            if (otherIsMe) {
+                newBankTotal[otherName][coin] -= mount
+            }
+        }
+    }
+
+    return newBankTotal
+}
+
 
 export const newBank = (newBankInfo) => (dispatch, getState) => {
     let { googleId } = getState().user
@@ -112,6 +157,8 @@ export const newOperation = (newOperInfo) => (dispatch, getState) => {
 }
 
 export const saveMoneyLocal = (moneyUpdated) => ({ type: "@money/save", payload: moneyUpdated })
+
+// export const saveBanksTotal = (banksTotalUpdated) => ({ type: "@banksT/save", payload: banksTotalUpdated })
 
 export const saveBanksLocal = (banksUpdated) => ({ type: "@banks/save", payload: banksUpdated })
 export const newBankLocal = (newBankInfo) => ({ type: "@banks/new", payload: newBankInfo })

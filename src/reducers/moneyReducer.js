@@ -1,4 +1,5 @@
 const defaultState = {
+    banksTotal: {},
     banks: [],
     otherBanks: [],
     operations: []

@@ -1,8 +1,7 @@
 import './Operation.scss'
 
-export const Operation = ({ operId, operInfo }) => {
-    const { myBank, coin, otherName, type, mount, description, date } = operInfo
-    const isPasive = (type.localeCompare("Pasivo")===0)
+export const Operation = ({ operInfo }) => {
+    const { myBank, coin, otherName, isPasive, mount, description, date } = operInfo
 
     return (
         <div className="oper">

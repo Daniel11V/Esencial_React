@@ -17,7 +17,13 @@ const PrivateOutlet = () => {
 const LoginOutlet = () => {
   const user = useSelector(state => state.user)
 
-  return user.name ? <Navigate to="/" /> : <h3>Inicia Sesion para comenzar...</h3>;
+  return user.name ? <Navigate to="/operations" /> : <h3>Inicia Sesion para comenzar...</h3>;
+}
+
+const WelcomeOutlet = () => {
+  const user = useSelector(state => state.user)
+
+  return user.name ? <Navigate to="/operations" /> : <Welcome />;
 }
 
 function App() {
@@ -31,7 +37,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
 
-            <Route path="/" element={<Welcome />} />
+            <Route path="/" element={<WelcomeOutlet />} />
             <Route path="/login" element={<LoginOutlet />} />
 
             <Route element={<PrivateOutlet />}>

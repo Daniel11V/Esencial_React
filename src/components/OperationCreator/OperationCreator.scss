@@ -18,6 +18,12 @@
                 margin-bottom: 0;
                 margin-top: 0.3em;
                 padding-right: 0.5em;
+                display: flex;
+                align-items: baseline;
+
+                .symbol-money {
+                    padding-right: 0.3em;
+                }
             
                 &.col.s2 {
                     display: flex;
@@ -26,6 +32,16 @@
                 }
             }
         }
+    }
+
+    &__mount {
+        margin-right: 1em !important;
+    }
+    
+    &__myBank {
+        margin-left : 1em !important;
+        width: auto;
+        flex: 1;
     }
 
     i {

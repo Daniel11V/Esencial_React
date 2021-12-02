@@ -13,7 +13,7 @@ const schema = Yup.object().shape({
     coin: Yup.string()
         .required('Campo requerido'),
 
-    startMount: Yup.number()
+    lastMonthMount: Yup.number()
         .min(0, 'El monto debe ser positivo')
 })
 
@@ -21,14 +21,13 @@ export const BankCreator = () => {
     const dispatch = useDispatch()
     
     const submitBank = (values) => {
-        const { name, coin, imgUrl, startMount } = values
+        const { name, coin, imgUrl, lastMonthMount } = values
         
         dispatch(newBank({ 
             name, imgUrl, 
             counts: [{ 
                 coin, 
-                startMount: (startMount > 0)?startMount:0,  
-                lastMonthMount: 0
+                lastMonthMount: (lastMonthMount > 0)?lastMonthMount:0,  
             }] 
         }))
 
@@ -40,7 +39,7 @@ export const BankCreator = () => {
             name: '',
             coin: '',
             imgUrl: '',
-            startMount: ''
+            lastMonthMount: ''
         },
         validationSchema: schema,
         validateOnChange: false, 
@@ -80,12 +79,12 @@ export const BankCreator = () => {
                 </div>
                 <div className="input-field col s2">
                     <input type="number" 
-                        name="startMount"
+                        name="lastMonthMount"
                         className="bankCr__input-number"
                         placeholder="Monto inicial"
-                        value={formik.values.startMount} 
+                        value={formik.values.lastMonthMount} 
                         onChange={formik.handleChange} />
-                    {formik.errors.startMount&&<p className="alert-form">{formik.errors.startMount}</p>}
+                    {formik.errors.lastMonthMount&&<p className="alert-form">{formik.errors.lastMonthMount}</p>}
                 </div>
             </div>
             <div className="bankCr__add waves-effect" onClick={formik.handleSubmit}>

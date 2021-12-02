@@ -42,11 +42,11 @@ export const MyMoney = () => {
                     <BankCreator />
                     <h4>Mis Cuentas</h4>
                     <div className="banks">
-                        <BankList banks={banks}/>
+                        <BankList />
                     </div>
 
                     <h4>Realizar Operación</h4>
-                    <OperationCreator />
+                    <OperationCreator banks={banks} />
                     
                     <h4>Mis Operaciones</h4>
                     <div className="prods">
