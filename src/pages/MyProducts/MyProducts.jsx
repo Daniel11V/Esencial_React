@@ -29,15 +29,12 @@ export const MyProducts = () => {
     return (
         <div>
             <div className="header">
-                <h3>Lista de tus Compras Esenciales</h3>
+                <h4>Mis Productos Esenciales</h4>
                 <SummaryModalButton />
                 <SaveModalButton onClick={()=>dispatch(saveProducts(user.googleId, products))}/>
             </div>
-            <h4>Agregar Producto</h4>
             <ProductCreator />
 
-            <h4>Mis Productos</h4>
-            
             {loading? (
                 <div className="progress">
                     <div className="indeterminate"></div>

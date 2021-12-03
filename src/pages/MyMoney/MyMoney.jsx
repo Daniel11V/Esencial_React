@@ -1,16 +1,17 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 import { cleanMoney, getMoneyFromFirebase } from "../../actions/moneyActions"
-import { BankCreator } from "../../components/BankCreator/BankCreator"
+import { ActionButton } from "../../components/ActionButton/ActionButton"
 import { BankList } from "../../components/BankList/BankList"
-import { OperationCreator } from "../../components/OperationCreator/OperationCreator"
 import { OperationList } from "../../components/OperationList/OperationList"
+import './MyMoney.scss'
 
 export const MyMoney = () => {
     // const { banks, operations, loadingMoney } = useContext(MoneyContext)
     const dispatch = useDispatch()
     const { user, money, loading } = useSelector(state => state)
-    const { banks, operations } = money
+    const { banks, operations, moneyTotal } = money
 
     
     useEffect(() => {
@@ -30,28 +31,29 @@ export const MyMoney = () => {
         <div>
             <div className="header">
             </div>
-            <h3>El Flujo de mi Dinero</h3>
+            <h3>Total: $ {moneyTotal}  ARS</h3>
             
             {loading? (
                 <div className="progress">
                     <div className="indeterminate"></div>
                 </div>
             ) : (
-                <div>
-                    <h4>Añadir Cuenta</h4>
-                    <BankCreator />
-                    <h4>Mis Cuentas</h4>
-                    <div className="banks">
-                        <BankList />
+                <div>                    
+                    <div className="money-headers">
+                        <h4>Mis Cuentas</h4>
+                        <Link to="/banks/new">
+                            <ActionButton word="Añadir" icon="add"/>
+                        </Link>
                     </div>
+                    <BankList />
 
-                    <h4>Realizar Operación</h4>
-                    <OperationCreator banks={banks} />
-                    
-                    <h4>Mis Operaciones</h4>
-                    <div className="prods">
-                        <OperationList operations={operations}/> 
+                    <div className="money-headers">
+                        <h4>Mis Operaciones</h4>
+                        <Link to="/operations/new">
+                            <ActionButton word="Añadir" icon="add"/>
+                        </Link>
                     </div>
+                    <OperationList operations={operations}/> 
                 </div>
             )}
             

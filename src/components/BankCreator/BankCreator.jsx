@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { newBank } from "../../actions/moneyActions"
 import './BankCreator.scss'
 import * as Yup from 'yup'
+import { ActionButton } from "../ActionButton/ActionButton"
 
 const schema = Yup.object().shape({
     name: Yup.string()
@@ -49,47 +50,43 @@ export const BankCreator = () => {
 
     return (
         <form className="bankCr row">
-
-            <div className="row right">
-                <div className="input-field col s3">
-                    <input type="text" 
-                        name="name"
-                        className="bankCr__input-text"
-                        placeholder="Nombre del banco/cuenta"
-                        value={formik.values.name}
-                        onChange={formik.handleChange}  />
-                    {formik.errors.name&&<p className="alert-form">{formik.errors.name}</p>}
-                </div>
-                <div className="input-field col s4">
-                    <input type="text" 
-                        name="imgUrl"
-                        className="bankCr__input-text"
-                        placeholder="Link de imagen"
-                        value={formik.values.imgUrl} 
-                        onChange={formik.handleChange} />
-                </div>
-                <div className="input-field col s1">
-                    <input type="text" 
-                        name="coin"
-                        className="bankCr__input-text"
-                        placeholder="Tipo de moneda"
-                        value={formik.values.coin} 
-                        onChange={formik.handleChange} />
-                    {formik.errors.coin&&<p className="alert-form">{formik.errors.coin}</p>}
-                </div>
-                <div className="input-field col s2">
-                    <input type="number" 
-                        name="lastMonthMount"
-                        className="bankCr__input-number"
-                        placeholder="Monto inicial"
-                        value={formik.values.lastMonthMount} 
-                        onChange={formik.handleChange} />
-                    {formik.errors.lastMonthMount&&<p className="alert-form">{formik.errors.lastMonthMount}</p>}
-                </div>
+            <h4>Añadir Cuenta</h4>
+            <div className="input-field">
+                <input type="text" 
+                    name="name"
+                    className="bankCr__input-text"
+                    placeholder="Nombre del banco/cuenta*"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}  />
+                {formik.errors.name&&<p className="alert-form">{formik.errors.name}</p>}
             </div>
-            <div className="bankCr__add waves-effect" onClick={formik.handleSubmit}>
-                <i className="material-icons">check</i>
+            <div className="input-field">
+                <input type="text" 
+                    name="imgUrl"
+                    className="bankCr__input-text"
+                    placeholder="Link de imagen"
+                    value={formik.values.imgUrl} 
+                    onChange={formik.handleChange} />
             </div>
+            <div className="input-field">
+                <input type="text" 
+                    name="coin"
+                    className="bankCr__input-text"
+                    placeholder="Tipo de moneda*"
+                    value={formik.values.coin} 
+                    onChange={formik.handleChange} />
+                {formik.errors.coin&&<p className="alert-form">{formik.errors.coin}</p>}
+            </div>
+            <div className="input-field">
+                <input type="number" 
+                    name="lastMonthMount"
+                    className="bankCr__input-number"
+                    placeholder="Monto inicial"
+                    value={formik.values.lastMonthMount} 
+                    onChange={formik.handleChange} />
+                {formik.errors.lastMonthMount&&<p className="alert-form">{formik.errors.lastMonthMount}</p>}
+            </div>
+            <ActionButton className="bankCr__add" word="Guardar" icon="check" onClick={formik.handleSubmit} />
         </form>
     )
 }

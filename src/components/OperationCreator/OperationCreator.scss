@@ -1,36 +1,22 @@
 .operCr {
-    min-height: 75px;
     width: 100%;
-    border: 1px solid gray;
-    border-radius: 10px;
     display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    
-    .row {
+    flex-direction: column;
+    // font-size: 1.2em;
+            
+    .input-field {
         margin-bottom: 0;
-        
-        &.right {
-            padding-left: 0.8em;
-            width: 100%;
-            
-            .input-field {
-                margin-bottom: 0;
-                margin-top: 0.3em;
-                padding-right: 0.5em;
-                display: flex;
-                align-items: baseline;
+        margin-top: 2em;
+        display: flex;
+        align-items: baseline;
 
-                .symbol-money {
-                    padding-right: 0.3em;
-                }
-            
-                &.col.s2 {
-                    display: flex;
-                    padding: 0;
-                    padding-left: 0.5em !important;
-                }
-            }
+        .symbol-money {
+            padding-right: 0.3em;
+        }
+    
+        &.money-input {
+            display: flex;
+            padding: 0;
         }
     }
 
@@ -44,18 +30,8 @@
         flex: 1;
     }
 
-    i {
-        margin: 1em;
-    }
-}
-
-@media (max-width: 760px) {
-    .operCr {
-        display: block;
-        text-align: end;
-
-        .input-field {
-            width: 100% !important;
-        }
+    &__add {
+        margin-top: 1em;
+        align-self: flex-end;
     }
 }

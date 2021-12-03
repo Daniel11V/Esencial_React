@@ -1,8 +1,9 @@
 import { useFormik } from "formik"
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import * as Yup from 'yup'
 import { newOperation } from "../../actions/moneyActions"
+import { ActionButton } from "../ActionButton/ActionButton"
 import './OperationCreator.scss'
 
 const schema = Yup.object().shape({
@@ -20,8 +21,9 @@ const schema = Yup.object().shape({
         .min(1, 'El monto debe ser positivo')
 })
 
-export const OperationCreator = ({ banks }) => {
+export const OperationCreator = () => {
     const dispatch = useDispatch()
+    const { banks } = useSelector(state => state.money)
     const [banksCurrentCoin, setBanksCurrentCoin] = useState([])
 
     const submitOperation = (values) => {
@@ -59,87 +61,82 @@ export const OperationCreator = ({ banks }) => {
     }, [banks, formik.values.coin])
 
     return (
-        <form className="operCr row">
-            <div className="row right">
-                <div className="input-field col s3">
-                    {/* <label for="myBank">Tipo de Moneda</label> */}
-                    <span className="symbol-money">$</span>
-                    <input type="number" 
-                        className="operCr__mount"
-                        placeholder="1000"
-                        name="mount"
-                        value={formik.values.mount} 
-                        onChange={formik.handleChange}  />
-                        {formik.errors.mount&&<p className="alert-form">{formik.errors.mount}</p>}
-                    
-                    <select 
-                        name="coin"
-                        style={{ display: 'block' }}
-                        value={formik.values.coin} 
-                        onChange={formik.handleChange}>    
-                        <option value="ARS">ARS</option>
-                        <option value="USD">USD</option>
+        <form className="operCr">
+            <h4>Realizar Operación</h4>
+            <div className="input-field money-input">
+                {/* <label for="myBank">Tipo de Moneda</label> */}
+                <span className="symbol-money">$</span>
+                <input type="number" 
+                    className="operCr__mount"
+                    placeholder="1000"
+                    name="mount"
+                    value={formik.values.mount} 
+                    onChange={formik.handleChange}  />
+                    {formik.errors.mount&&<p className="alert-form">{formik.errors.mount}</p>}
+                
+                <select 
+                    name="coin"
+                    style={{ display: 'block' }}
+                    value={formik.values.coin} 
+                    onChange={formik.handleChange}>    
+                    <option value="ARS">ARS</option>
+                    <option value="USD">USD</option>
 
-                        {/* {banksCurrentCoin.map(bank => (
-                        ))}       */}
+                    {/* {banksCurrentCoin.map(bank => (
+                    ))}       */}
 
-                    </select>
-                </div>
-                <div className="input-field col s3">
-                </div>
-                <div className="input-field col s3">
-                    {/* <label for="myBank">Tu Banco</label> */}
-                    <span>Tu cuenta:</span>
-                    <select 
-                        name="myBank"
-                        className="operCr__myBank"
-                        style={{ display: 'block' }}
-                        value={formik.values.myBank} 
-                        onChange={formik.handleChange}>    
-
-                        {banksCurrentCoin.map((bank, i) => (
-                            <option key={i} value={bank.name}>{bank.name}</option>
-                        ))}      
-
-                    </select>
-                    {formik.errors.myBank && <p className="alert-form">{formik.errors.myBank}</p>}
-                </div>
-                <div className="input-field col s3">
-                    <select 
-                        name="coin"
-                        style={{ display: 'block' }}
-                        value={formik.values.pasiveString} 
-                        onChange={formik.handleChange}>    
-                        <option value="Pasive">
-                            {/* <i className="material-icons">arrow_downward</i> */}
-                            Envia a
-                        </option>
-                        <option value="Active">
-                            {/* <i className="material-icons">arrow_upward</i> */}
-                            Recive de
-                        </option>
-                    </select>
-                </div>
-                <div className="input-field col s3">
-                    <input type="text" 
-                        className="operCr__name"
-                        placeholder="Nombre del destinatario"
-                        name="otherName"
-                        value={formik.values.otherName} 
-                        onChange={formik.handleChange}  />
-                        {formik.errors.otherName&&<p className="alert-form">{formik.errors.otherName}</p>}
-                </div>
-                <div className="input-field col s3">
-                    <input type="text" 
-                        placeholder="Descripción"
-                        name="description"
-                        value={formik.values.description} 
-                        onChange={formik.handleChange}  />
-                </div>
+                </select>
             </div>
-            <div className="operCr__add waves-effect" onClick={formik.handleSubmit}>
-                <i className="material-icons">check</i>
+            <div className="input-field">
+                {/* <label for="myBank">Tu Banco</label> */}
+                <span>Tu cuenta:</span>
+                <select 
+                    name="myBank"
+                    className="operCr__myBank"
+                    style={{ display: 'block' }}
+                    value={formik.values.myBank} 
+                    onChange={formik.handleChange}>    
+
+                    {banksCurrentCoin.map((bank, i) => (
+                        <option key={i} value={bank.name}>{bank.name}</option>
+                    ))}      
+
+                </select>
+                {formik.errors.myBank && <p className="alert-form">{formik.errors.myBank}</p>}
             </div>
+            <div className="input-field">
+                <select 
+                    name="coin"
+                    style={{ display: 'block' }}
+                    value={formik.values.pasiveString} 
+                    onChange={formik.handleChange}>    
+                    <option value="Pasive">
+                        {/* <i className="material-icons">arrow_downward</i> */}
+                        Envia a
+                    </option>
+                    <option value="Active">
+                        {/* <i className="material-icons">arrow_upward</i> */}
+                        Recive de
+                    </option>
+                </select>
+            </div>
+            <div className="input-field">
+                <input type="text" 
+                    className="operCr__name"
+                    placeholder="Nombre del destinatario/origen"
+                    name="otherName"
+                    value={formik.values.otherName} 
+                    onChange={formik.handleChange}  />
+                    {formik.errors.otherName&&<p className="alert-form">{formik.errors.otherName}</p>}
+            </div>
+            <div className="input-field">
+                <input type="text" 
+                    placeholder="Descripción"
+                    name="description"
+                    value={formik.values.description} 
+                    onChange={formik.handleChange}  />
+            </div>
+            <ActionButton className="operCr__add" word="Guardar" icon="check" onClick={formik.handleSubmit} />
         </form>
     )
 }

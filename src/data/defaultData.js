@@ -13,7 +13,6 @@ export const defaultMoney = {
         counts: [
             {
                 coin: "ARS",
-                startMount: 0,
                 lastMonthMount: 0
             }
         ]

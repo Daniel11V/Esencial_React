@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import M from "materialize-css"
+import { ActionButton } from "../ActionButton/ActionButton";
 
 export const SaveModalButton = ({ onClick }) => {
     useEffect(() => {
@@ -9,8 +10,8 @@ export const SaveModalButton = ({ onClick }) => {
 
     return (
         <div>
-            <a href="#modal_saved" className="btn waves-effect waves-light blue darken-2 save-btn right modal-trigger" onClick={onClick}>
-                <i className="material-icons right">save</i>Guardar
+            <a href="#modal_saved" className="modal-trigger" onClick={onClick}>
+                <ActionButton word="Guardar" icon="save" />
             </a>
             
             {/* Modal Saved */}

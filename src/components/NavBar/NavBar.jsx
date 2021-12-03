@@ -41,7 +41,6 @@ export const NavBar = () => {
                     } */}
                     <ul className="right hide-on-med-and-down pages-ul">
                         <li><Link to="/" >Cuentas</Link></li>
-                        <li><Link to="/operations" >Operaciones</Link></li>
                         <li><Link to="/products/Ropa" >Productos</Link></li>
                         {user.name?(
                             <li className="profile">
@@ -87,7 +86,6 @@ export const NavBar = () => {
                 </li>
                 <li><i><Link to="/" className="subheader" style={{ paddingLeft: '20px' }}>Esencial</Link></i></li>
                 <li><Link to="/" >Cuentas</Link></li>
-                <li><Link to="/operations" >Operaciones</Link></li>
                 <li><Link to="/products/Ropa" >Productos</Link></li>
             </ul>
         </div>

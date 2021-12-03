@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import M from "materialize-css"
+import { ActionButton } from "../ActionButton/ActionButton"
 
 export const SummaryModalButton = () => {
     const [prodsSummary, setProdsSummary] = useState([])
@@ -47,8 +48,8 @@ export const SummaryModalButton = () => {
     return (
         <Fragment>
             {/* Modal Trigger */}
-            <a href="#modal_summary" className="btn waves-effect waves-light blue darken-2 right modal-trigger" onClick={summaryCalculations}>
-                <i className="material-icons right">library_books</i>Resumen
+            <a href="#modal_summary" className="modal-trigger" onClick={summaryCalculations}>
+                <ActionButton word="Resumen" icon="library_books" />
             </a>
             {/* Modal Summary */}
             <div id="modal_summary" className="modal">

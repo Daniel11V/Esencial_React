@@ -3,8 +3,17 @@ import { defaultMoney } from '../data/defaultData'
 import { finishLoading, startLoading } from './loadingActions'
 const collectionName = "usersMoney"
 
+const cotizPesos = {
+    'ARS': 1,
+    'USD': 100,
+    'EUR': 110,
+    'BTC': 1000000,
+    'ETH': 1000000
+}
+
 /*
 const moneyStructure = {
+    (local) moneyTotal: 0
     (local) banksTotal: {
         ['bankName']: {
             ['coinName']: 2000,
@@ -55,13 +64,13 @@ export const getMoneyFromFirebase = (userId) => async (dispatch) => {
         const data = await getData(collectionName, userId)
 
         if (data) {
-            data.banksTotal = getBanksTotal(data)
-            dispatch(saveMoneyLocal(data))
+            let gotBanksTotal = getBanksTotal(data)
+            let gotMoneyTotal = getMoneyTotal(gotBanksTotal)
+            dispatch(saveMoneyLocal({ ...data, banksTotal: gotBanksTotal, moneyTotal: gotMoneyTotal }))
         } else {
-            defaultMoney.banksTotal = getBanksTotal(defaultMoney)
-            dispatch(saveMoneyLocal(defaultMoney))
-
             addData(collectionName, userId, defaultMoney)
+
+            dispatch(saveMoneyLocal({ ...defaultMoney, banksTotal: { Efectivo: { ARS: 0 } }, moneyTotal: 0 }))
         }
 
         dispatch(finishLoading())
@@ -116,6 +125,19 @@ export const getBanksTotal = (moneyInfo) => {
     }
 
     return newBankTotal
+}
+
+export const getMoneyTotal = (banksTotal) => {
+    let newMoneyTotal = 0
+
+    // Init Banks
+    for (let bank in banksTotal) {
+        for (let coin in banksTotal[bank]) {
+            newMoneyTotal += banksTotal[bank][coin] * cotizPesos[coin]
+        }
+    }
+
+    return newMoneyTotal
 }
 
 

@@ -4,9 +4,10 @@ import { MyProducts } from './pages/MyProducts/MyProducts';
 import { MyMoney } from './pages/MyMoney/MyMoney';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { Layout } from './components/Layout/Layout';
-import { Welcome } from './pages/Welcome/Welcome';
 import { Provider, useSelector } from 'react-redux';
 import { store } from './store/store';
+import { BankCreator } from './components/BankCreator/BankCreator';
+import { OperationCreator } from './components/OperationCreator/OperationCreator';
 
 const PrivateOutlet = () => {
   const user = useSelector(state => state.user)
@@ -17,13 +18,7 @@ const PrivateOutlet = () => {
 const LoginOutlet = () => {
   const user = useSelector(state => state.user)
 
-  return user.name ? <Navigate to="/operations" /> : <h3>Inicia Sesion para comenzar...</h3>;
-}
-
-const WelcomeOutlet = () => {
-  const user = useSelector(state => state.user)
-
-  return user.name ? <Navigate to="/operations" /> : <Welcome />;
+  return user.name ? <Navigate to="/" /> : <h3>Hola! Inicia sesion para comenzar...</h3>;
 }
 
 function App() {
@@ -37,20 +32,20 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
 
-            <Route path="/" element={<WelcomeOutlet />} />
             <Route path="/login" element={<LoginOutlet />} />
 
             <Route element={<PrivateOutlet />}>
+              <Route path="/" element={<MyMoney />} />
               <Route path="/products/:categoryId" element={<MyProducts />} />
-              <Route path="/operations" element={<MyMoney />} />
+              <Route path="/banks/new" element={<BankCreator />} />
+              <Route path="/other-banks/new" element={<BankCreator />} />
+              <Route path="/operations/new" element={<OperationCreator />} />
             </Route>
 
             <Route path="*" element={<Navigate to="/" />} />
 
           </Route>
         </Routes>
-
-        {/* <Footer /> */}
 
 
       </BrowserRouter>
