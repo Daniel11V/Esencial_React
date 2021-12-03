@@ -8,6 +8,7 @@ import { Provider, useSelector } from 'react-redux';
 import { store } from './store/store';
 import { BankCreator } from './components/BankCreator/BankCreator';
 import { OperationCreator } from './components/OperationCreator/OperationCreator';
+import { ReasonCreator } from './components/ReasonCreator/ReasonCreator';
 
 const PrivateOutlet = () => {
   const user = useSelector(state => state.user)
@@ -38,7 +39,7 @@ function App() {
               <Route path="/" element={<MyMoney />} />
               <Route path="/products/:categoryId" element={<MyProducts />} />
               <Route path="/banks/new" element={<BankCreator />} />
-              <Route path="/other-banks/new" element={<BankCreator />} />
+              <Route path="/reasons/new" element={<ReasonCreator />} />
               <Route path="/operations/new" element={<OperationCreator />} />
             </Route>
 

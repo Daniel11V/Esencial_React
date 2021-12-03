@@ -17,25 +17,35 @@ export const defaultMoney = {
             }
         ]
     }],
-    otherBanks: [
+    reasons: [
         {
-            name: 'Compras Fisicas',
+            name: 'Gastos de Productos',
+            isPasive: true,
             imgUrl: '',
-            coin: ["ARS"]
         },
         {
-            name: 'Compras Virtuales',
+            name: 'Gastos de Servicios',
+            isPasive: true,
             imgUrl: '',
-            coin: ["ARS", "USD"]
+        },
+        {
+            name: 'Ganancias de Servicios',
+            isPasive: false,
+            imgUrl: '',
+        },
+        {
+            name: 'Sueldo',
+            isPasive: false,
+            imgUrl: '',
         }
     ],
     operations: []
 }
 
-export const coins = [
-    { name: "ARS", imgUrl: "" },
-    { name: "USD", imgUrl: "" },
-    { name: "EUR", imgUrl: "" },
-    { name: "BTC", imgUrl: "" },
-    { name: "ETH", imgUrl: "" }
+export const coinsInfo = [
+    { name: "ARS", imgUrl: "", price: 1 },
+    { name: "USD", imgUrl: "", price: 100 },
+    { name: "EUR", imgUrl: "", price: 110 },
+    { name: "BTC", imgUrl: "", price: 1000000 },
+    { name: "ETH", imgUrl: "", price: 1000000 }
 ]

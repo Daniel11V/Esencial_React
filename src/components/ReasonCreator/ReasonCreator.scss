@@ -1,0 +1,10 @@
+.otherBankCr {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &__add {
+        margin-top: 1em;
+        align-self: flex-end;
+    }
+}

@@ -31,7 +31,7 @@ export const MyMoney = () => {
         <div>
             <div className="header">
             </div>
-            <h3>Total: $ {moneyTotal}  ARS</h3>
+            <h4>Total:  $ {moneyTotal}  ARS</h4>
             
             {loading? (
                 <div className="progress">
@@ -48,7 +48,7 @@ export const MyMoney = () => {
                     <BankList />
 
                     <div className="money-headers">
-                        <h4>Mis Operaciones</h4>
+                        <h4>Operaciones</h4>
                         <Link to="/operations/new">
                             <ActionButton word="Añadir" icon="add"/>
                         </Link>

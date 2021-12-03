@@ -33,11 +33,10 @@ const moneyStructure = {
             ]
         }
     ],
-    otherBanks: [
+    reasons: [
         {
             name: '',
             imgUrl: '',
-            coin: ["ARS"]
         }
     ],
     operations: [
