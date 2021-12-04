@@ -3,6 +3,13 @@
     display: flex;
     flex-direction: column;
     
+    &__header {
+        display: flex;  
+        align-items: baseline;
+        cursor: pointer; 
+        width: fit-content;
+    }
+
     &__add {
         margin-top: 1em;
         align-self: flex-end;

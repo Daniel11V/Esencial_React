@@ -1,13 +1,13 @@
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import { productReducer } from '../reducers/productReducer'
+import { outgoingReducer } from '../reducers/outgoingReducer'
 import { moneyReducer } from '../reducers/moneyReducer'
 import { loadingReducer } from '../reducers/loadingReducer'
 import { userReducer } from '../reducers/userReducer'
 import thunk from 'redux-thunk'
 
 const reducers = combineReducers({
-    products: productReducer,
+    outgoings: outgoingReducer,
     money: moneyReducer,
     loading: loadingReducer,
     user: userReducer

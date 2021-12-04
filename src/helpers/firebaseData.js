@@ -19,8 +19,8 @@ export const getData = async (collectionName, userId) => {
 
     // return new Promise((resolve, reject) => {
     //     setTimeout(() => {
-    //         const productsFromStorage = JSON.parse(localStorage.getItem("usersProducts"));
-    //         resolve(productsFromStorage ? productsFromStorage : []);
+    //         const outgoingsFromStorage = JSON.parse(localStorage.getItem("usersOutgoings"));
+    //         resolve(outgoingsFromStorage ? outgoingsFromStorage : []);
     //     }, 3000)
     // })
 }
@@ -39,7 +39,7 @@ export const updateData = async (collectionName, userId, updatedData) => {
 export const updateDataField = async (collectionName, userId, field, updatedData) => {
 
     // Con LocalStorage
-    // localStorage.setItem("usersProducts", JSON.stringify(data));
+    // localStorage.setItem("usersOutgoings", JSON.stringify(data));
 
     try {
         if (updatedData) {
@@ -55,7 +55,7 @@ export const updateDataField = async (collectionName, userId, field, updatedData
 export const addData = async (collectionName, userId, updatedData) => {
 
     // Con LocalStorage
-    // localStorage.setItem("usersProducts", JSON.stringify(data));
+    // localStorage.setItem("usersOutgoings", JSON.stringify(data));
 
     try {
         if (updatedData) {

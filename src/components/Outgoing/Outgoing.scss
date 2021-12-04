@@ -1,4 +1,4 @@
-.prod {
+.out {
     min-height: 75px;
     width: 100%;
     border: 1px solid gray;
@@ -13,10 +13,10 @@
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
 
-        .prod__img {
+        .out__img {
             border-top-left-radius: 10px;
         }
-        .prod__delete {
+        .out__delete {
             border-top-right-radius: 10px;
         }
     }
@@ -25,10 +25,10 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
 
-        .prod__img {
+        .out__img {
             border-bottom-left-radius: 10px;
         }
-        .prod__delete {
+        .out__delete {
             border-bottom-right-radius: 10px;
         }
     }
@@ -60,7 +60,7 @@
         flex: 1;
         min-width: 200px; 
         padding-left: 0.8em;
-        font-size: 1.5em;
+        font-size: 1em;
         display: -webkit-box;
         max-height: 100%;
         overflow: hidden;
@@ -76,7 +76,7 @@
     }
     
     &__price {
-        font-size: 1.4em;
+        font-size: 1em;
         padding-right: 1em;
     }
 

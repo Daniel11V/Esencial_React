@@ -3,10 +3,13 @@ import { useSelector } from "react-redux"
 import M from "materialize-css"
 import { ActionButton } from "../ActionButton/ActionButton"
 
-export const SummaryModalButton = () => {
-    const [prodsSummary, setProdsSummary] = useState([])
+export const SummaryModalButton = ({ category }) => {
+    const [outsSummary, setOutsSummary] = useState([])
     const [totalSummary, setTotalSummary] = useState(0)
-    const cartProds = useSelector(state => state.products.filter(prod => prod.quantity))
+    const cartOuts = useSelector(state => (category.length)?
+        state.outgoings[category].filter(out => out.quantity):
+        [ ...state.outgoings.products.filter(out => out.quantity),
+            ...state.outgoings.services.filter(out => out.quantity) ])
 
     useEffect(() => {
         let elems = document.querySelectorAll('.modal');
@@ -16,8 +19,8 @@ export const SummaryModalButton = () => {
     const summaryCalculations = () => {
         let totalTotal = 0
     
-        const summaryProds = cartProds.map((prodInfo, i) => {
-            const { name, price, quantity, period, imgUrl } = prodInfo
+        const summaryOuts = cartOuts.map((outInfo, i) => {
+            const { name, price, quantity, period, imgUrl } = outInfo
             
             let monthQuantity
             if (period.localeCompare('Month')) {
@@ -29,20 +32,20 @@ export const SummaryModalButton = () => {
                 monthQuantity = quantity
             }
 
-            let totalProdPrice = monthQuantity*price
+            let totalOutPrice = monthQuantity*price
 
-            totalTotal += totalProdPrice
+            totalTotal += totalOutPrice
 
             return {
                 name, price, quantity, period, imgUrl,
                 quantityMonth: monthQuantity,
-                totalPrice: totalProdPrice
+                totalPrice: totalOutPrice
             }
 
         })
 
         setTotalSummary(totalTotal)
-        setProdsSummary(summaryProds)
+        setOutsSummary(summaryOuts)
     }
 
     return (
@@ -60,12 +63,12 @@ export const SummaryModalButton = () => {
                         <span>Precio Unitario</span>
                         <span>Cantidad:</span>
                         <span>Total</span>
-                        {prodsSummary.map((prod, i) => (
+                        {outsSummary.map((out, i) => (
                             <Fragment key={i} >
-                                <span>- {prod.name}</span>
-                                <span>$ {prod.price}</span>
-                                <span>x{prod.quantityMonth}:</span>
-                                <span>$ {prod.totalPrice}</span>
+                                <span>- {out.name}</span>
+                                <span>$ {out.price}</span>
+                                <span>x{out.quantityMonth}:</span>
+                                <span>$ {out.totalPrice}</span>
                             </Fragment>
                         ))}
                         <span>TOTAL: </span>

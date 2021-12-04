@@ -1,15 +1,7 @@
 import { addData, getData, updateData, updateDataField } from '../helpers/firebaseData'
-import { defaultMoney } from '../data/defaultData'
+import { coinsInfo, defaultMoney } from '../data/defaultData'
 import { finishLoading, startLoading } from './loadingActions'
 const collectionName = "usersMoney"
-
-const cotizPesos = {
-    'ARS': 1,
-    'USD': 100,
-    'EUR': 110,
-    'BTC': 1000000,
-    'ETH': 1000000
-}
 
 /*
 const moneyStructure = {
@@ -132,7 +124,7 @@ export const getMoneyTotal = (banksTotal) => {
     // Init Banks
     for (let bank in banksTotal) {
         for (let coin in banksTotal[bank]) {
-            newMoneyTotal += banksTotal[bank][coin] * cotizPesos[coin]
+            newMoneyTotal += banksTotal[bank][coin] * coinsInfo[coin].price
         }
     }
 

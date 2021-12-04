@@ -8,7 +8,7 @@ export const BankList = () => {
     return (
         <div className="bank_list">
             {banks.map((bankInfo, i) => (
-                <Bank key={i} bankInfo={bankInfo} bankTotal={banksTotal[bankInfo.name]} />
+                <Bank key={i} bankId={i} bankInfo={bankInfo} bankTotal={banksTotal[bankInfo.name]} />
             ))}
         </div>
     )

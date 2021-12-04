@@ -2,6 +2,7 @@ import { useFormik } from "formik"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router"
 import * as Yup from 'yup'
 import { newOperation } from "../../actions/moneyActions"
 import { ActionButton } from "../ActionButton/ActionButton"
@@ -24,8 +25,11 @@ const schema = Yup.object().shape({
 
 export const OperationCreator = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { banks, reasons } = useSelector(state => state.money)
-    const [banksCurrentCoin, setBanksCurrentCoin] = useState([])
+    const [ banksCurrentCoin, setBanksCurrentCoin ] = useState([])
+    const [ reasonsCurrentCoin, setReasonsCurrentCoin ] = useState([])
+    const [ currentCoins, setCurrentCoins] = useState([])
 
     const submitOperation = (values) => {
         const { myBank, coin, otherName, pasiveString, mount, description } = values
@@ -59,11 +63,18 @@ export const OperationCreator = () => {
             bank.counts.some(count => !count.coin.localeCompare(formik.values.coin))
         )))
 
+        setReasonsCurrentCoin([])
+
+        setCurrentCoins([])
+
     }, [banks, formik.values.coin])
 
     return (
         <form className="operCr">
-            <h4>Realizar Operación</h4>
+            <div className="operCr__header" onClick={()=>navigate(-1)}>
+                <i className="material-icons" >chevron_left</i>
+                <h4>Realizar Operación</h4>
+            </div>
             <div className="input-field money-input">
                 {/* <label for="myBank">Tipo de Moneda</label> */}
                 <div className="symbol-money">$</div>
@@ -119,7 +130,7 @@ export const OperationCreator = () => {
                         Envia a
                     </option>
                     <option value="Active">
-                        Recive de
+                        Recibe de
                     </option>
                 </select>
             </div>
@@ -134,10 +145,10 @@ export const OperationCreator = () => {
                     onChange={formik.handleChange}  >
                     <option value="" disabled>Motivo / Otra Cuenta</option>
                     {reasons.map((reason, i) => (
-                        <option key={i} value={reason.name}>{reason.name}</option>
+                        <option key={i} value={reason.name}>Motivo - {reason.name}</option>
                     ))}    
                     {banksCurrentCoin.map((bank, i) => (
-                        <option key={i} value={bank.name}>{bank.name}</option>
+                        <option key={i} value={bank.name}>Cuenta - {bank.name}</option>
                     ))}    
                         <option value="Cuenta Ajena">Cuenta Ajena</option>
                 </select>
@@ -153,7 +164,7 @@ export const OperationCreator = () => {
                     value={formik.values.description} 
                     onChange={formik.handleChange}  />
             </div>
-            <Link to="/" className="operCr__add">
+            <Link to="/banks" className="operCr__add">
                 <ActionButton word="Guardar" icon="check" onClick={formik.handleSubmit} />
             </Link>
         </form>

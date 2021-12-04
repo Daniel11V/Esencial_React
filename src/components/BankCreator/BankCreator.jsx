@@ -4,6 +4,7 @@ import { newBank } from "../../actions/moneyActions"
 import './BankCreator.scss'
 import * as Yup from 'yup'
 import { ActionButton } from "../ActionButton/ActionButton"
+import { useNavigate } from "react-router"
 
 const schema = Yup.object().shape({
     name: Yup.string()
@@ -20,6 +21,7 @@ const schema = Yup.object().shape({
 
 export const BankCreator = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     const submitBank = (values) => {
         const { name, coin, imgUrl, lastMonthMount } = values
@@ -50,7 +52,10 @@ export const BankCreator = () => {
 
     return (
         <form className="bankCr row">
-            <h4>Añadir Cuenta</h4>
+            <div className="bankDet__header" onClick={()=>navigate(-1)}>
+                <i className="material-icons" >chevron_left</i>
+                <h4>Añadir Cuenta</h4>
+            </div>
             <div className="input-field">
                 <input type="text" 
                     name="name"

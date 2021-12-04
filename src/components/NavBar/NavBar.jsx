@@ -40,8 +40,9 @@ export const NavBar = () => {
                         </div>
                     } */}
                     <ul className="right hide-on-med-and-down pages-ul">
-                        <li><Link to="/" >Cuentas</Link></li>
-                        <li><Link to="/products/Ropa" >Productos</Link></li>
+                        <li><Link to="/banks" >Cuentas</Link></li>
+                        <li><Link to="/outgoings/products" >Productos</Link></li>
+                        <li><Link to="/outgoings/services" >Servicios</Link></li>
                         {user.name?(
                             <li className="profile">
                                 <div style={{display: 'flex',flexDirection: 'column'}}>
@@ -85,8 +86,9 @@ export const NavBar = () => {
                 }
                 </li>
                 <li><i><Link to="/" className="subheader" style={{ paddingLeft: '20px' }}>Esencial</Link></i></li>
-                <li><Link to="/" >Cuentas</Link></li>
-                <li><Link to="/products/Ropa" >Productos</Link></li>
+                <li><Link to="/banks" >Cuentas</Link></li>
+                <li><Link to="/outgoings/products" >Productos</Link></li>
+                <li><Link to="/outgoings/services" >Servicios</Link></li>
             </ul>
         </div>
     );
