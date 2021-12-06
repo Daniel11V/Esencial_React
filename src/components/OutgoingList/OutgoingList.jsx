@@ -7,7 +7,7 @@ import { Outgoing } from "../Outgoing/Outgoing"
 import { deleteOutgoing } from "../../actions/outgoingActions"
 import { useDispatch } from "react-redux"
 
-export const OutgoingList = ({ outgoing, category }) => {
+export const OutgoingList = ({ outgoing = [], category = "products" }) => {
     const [deleteId, setDeleteId] = useState(null) 
     const dispatch = useDispatch()
 
