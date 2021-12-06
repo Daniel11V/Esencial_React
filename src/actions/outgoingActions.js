@@ -59,6 +59,17 @@ export const newOutgoing = (category, newOutInfo) => (dispatch, getState) => {
     dispatch(newOutgoingLocal(category, newOutInfo))
 }
 
+export const deleteOutgoing = (category, outId) => (dispatch, getState) => {
+    const { user, outgoings } = getState()
+    let categoryOuts = outgoings[category]
+
+    categoryOuts.splice(outId, 1)
+
+    updateDataField(collectionName, user.googleId, category, [...categoryOuts])
+
+    dispatch(deleteOutgoingLocal(category, categoryOuts))
+}
+
 
 export const saveOutgoingsLocal = (outsUpdated) => ({ type: "@outs/save", payload: outsUpdated })
 
@@ -66,7 +77,8 @@ export const saveOutgoingLocal = (category, prodId, prodUpdated) => ({ type: "@o
 
 export const newOutgoingLocal = (category, newOutInfo) => ({ type: "@outs/new", payload: { category, newOutInfo } })
 
-// export const cleanOutgoings = () => ({ type: "@outs/clean", payload: { prodId, prodUpdated } })
+export const deleteOutgoingLocal = (category, categoryOuts) => ({ type: "@outs/delete", payload: { category, categoryOuts } })
 
+// export const cleanOutgoings = () => ({ type: "@outs/clean", payload: { prodId, prodUpdated } })
 
 // export const addOutgoing = (newOut) => ({ type: "SAVE_PRODS", payload: newOut })

@@ -1,12 +1,15 @@
-import { useFormik } from "formik"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router"
-import * as Yup from 'yup'
-import { newOperation } from "../../actions/moneyActions"
-import { ActionButton } from "../ActionButton/ActionButton"
 import './OperationCreator.scss'
+
+import * as Yup from 'yup'
+
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+
+import { ActionButton } from "../ActionButton/ActionButton"
+import { Link } from "react-router-dom"
+import { newOperation } from "../../actions/moneyActions"
+import { useFormik } from "formik"
+import { useNavigate } from "react-router"
 
 const schema = Yup.object().shape({
     myBank: Yup.string()

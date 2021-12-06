@@ -5,7 +5,7 @@ import { GrFormAdd, GrFormSubtract } from "react-icons/gr"
 import { saveOutgoingLocal } from "../../actions/outgoingActions";
 import './Outgoing.scss'
 
-export const Outgoing = ({ outId, outInfo, category }) => {
+export const Outgoing = ({ outId, outInfo, category, setDeleteId }) => {
     const dispatch = useDispatch()
     const { name, price, quantity, period, imgUrl } = outInfo
 
@@ -35,7 +35,7 @@ export const Outgoing = ({ outId, outInfo, category }) => {
         outgoingUpdated.quantity++
         dispatch(saveOutgoingLocal(category, outId, outgoingUpdated))
     }
-
+    
     return (
         <div className="out">
             <div className="out__img" 
@@ -63,9 +63,9 @@ export const Outgoing = ({ outId, outInfo, category }) => {
                     </div>
                 </div>
             </div>
-            <div className="out__delete waves-effect" onClick={()=>console.log('delete')}>
+            <a href="#modal_deleted" className="out__delete waves-effect modal-trigger" onClick={()=>setDeleteId(outId)}>
                 <i className="material-icons">delete</i>
-            </div>
+            </a>
         </div>
     )
 }

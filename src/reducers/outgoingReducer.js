@@ -15,6 +15,8 @@ export const outgoingReducer = (state = defaultState, { type, payload }) => {
             return { ...state, [payload.category]: [...updatedOutgoing] }
         case "@outs/new":
             return { ...state, [payload.category]: [...state[payload.category], { ...payload.newOutInfo }] }
+        case "@outs/delete":
+            return { ...state, [payload.category]: [...payload.categoryOuts] }
 
         default:
             return state
